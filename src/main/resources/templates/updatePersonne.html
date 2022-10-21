@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Modification de la fiche</title>
+  </head>
+  <body>
+    <h2 class="h2">Modifier une personne</h2>
+
+    <div>
+      <form method="post" th:action="@{/savePersonne}" th:object="${personne}">
+        <div class="form-group">
+          <input type="hidden" th:field="*{id}" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="prenomInput">Prénom</label>
+          <input
+            type="text"
+            th:field="*{prenom}"
+            class="form-control"
+            id="prenomInput"
+            aria-describedby="prenomHelp"
+            placeholder="Saisir le prénom"
+          />
+          <small id="prenomHelp" class="form-text text-muted"
+            >Merci d'écrire le prénom de l'employée.</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="nomInput">Nom</label>
+          <input
+            type="text"
+            th:field="*{nom}"
+            class="form-control"
+            id="nomInput"
+            aria-describedby="nomHelp"
+            placeholder="Saisir le nom"
+          />
+          <small id="nomHelp" class="form-text text-muted"
+            >Merci d'écrire le nom de l'employée.</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="telephone">Téléphone</label>
+          <input
+            type="text"
+            th:field="*{telephone}"
+            class="form-control"
+            id="telephoneInput"
+            aria-describedby="telephoneHelp"
+            placeholder="Saisir le numéro de téléphone"
+          />
+          <small id="telephoneHelp" class="form-text text-muted"
+            >Merci d'écrire le numéro de téléphone de la personne.</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="communeInput">Commune</label>
+          <input
+            type="text"
+            th:field="*{commune}"
+            class="form-control"
+            id="communeInput"
+            placeholder="Saisir la commune"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Modifier</button>
+      </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  </body>
+</html>
