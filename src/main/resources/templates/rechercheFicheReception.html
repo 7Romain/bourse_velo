@@ -15,6 +15,7 @@
           <th>Téléphone</th>
           <th>Commune</th>
           <th>Date d'inscription</th>
+          <th>Adresse email</th>
         </tr>
       </thead>
       <tbody>
@@ -27,10 +28,12 @@
           <td><span th:text="${personne.telephone}">Téléphone</span></td>
           <td><span th:text="${personne.commune}">Commune</span></td>
           <td>
-            <span th:text="${personne.dateInscription}"
+            <span th:text="${{personne.dateInscription}}"
               >Date d'inscription</span
             >
           </td>
+          <td><span th:text="${personne.email}">Email</span></td>
+
           <td>
             <a th:href="@{/updatePersonne/{id}(id=${personne.id})}"
               ><button class="btn btn-info">Modifier</button></a

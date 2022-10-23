@@ -20,4 +20,6 @@ public class Personne {
 
     private LocalDate dateInscription = LocalDate.now();
 
+    private String email;
+
 }

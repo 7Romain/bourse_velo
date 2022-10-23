@@ -77,4 +77,12 @@ public String rechercheFicheReception(@NotNull Model model){
         return "validerPersonne";
     }
 
+    @GetMapping("/ajouterArticle/{id}")
+    public String ajouterArticle(@PathVariable("id") final int id, Model model) {
+        Personne pers = personneService.getPersonne(id);
+        model.addAttribute("personne", pers);
+        return "ajouterArticle";
 }
+
+}
+
