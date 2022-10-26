@@ -72,4 +72,47 @@ public class ArticleProxy {
         return response.getBody();
     }
 
+    /**
+     *
+     * Renvoie une list d'article qui on in "table" comme  numéro de table d'enregistrement
+     * @param table
+     * @return
+     */
+    public Iterable<Article> getTableCount(int table){
+        String baseApiUrl = props.getApiUrl();
+        String getArticlesUrl = baseApiUrl + "/articlesParTable/" + table;
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Iterable<Article>> response = restTemplate.exchange(
+                getArticlesUrl,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<Iterable<Article>>() {
+                });
+        log.debug("Get Article call " + response.getStatusCode().toString());
+
+        return response.getBody();
+    }
+
+    public Article getArticleByRef(int ref){
+        String baseApiUrl = props.getApiUrl();
+        String getArticlesByRefUrl = baseApiUrl + "/articleParRef/" + ref;
+        RestTemplate restTemplate = new RestTemplate();
+        HttpEntity<Integer> request = new HttpEntity<>(ref);
+        ResponseEntity<Article> response = restTemplate.exchange(
+                getArticlesByRefUrl,
+                HttpMethod.GET,
+                request,
+                Article.class);
+
+        log.debug("Create Article call " + response.getStatusCode().toString());
+
+        return response.getBody();
+
+    }
+
+
+
+
+
+
 }
