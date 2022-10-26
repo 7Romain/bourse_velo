@@ -1,6 +1,7 @@
 package fr.oz.boursevelo.model;
 
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 

@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta charset="UTF-8">
   <title>Réception Bourse aux Vélo CRSY</title>
 </head>
+
 <body>
-<h1>Réception</h1>
-<a href="/creationFiche"><button>Créer Fiche</button></a>
-<a href="/rechercheFicheReception"><button>Chercher Fiche</button></a>
-<a href="/"><button>Retour</button></a>
+  <h1>Réception</h1>
+  <a th:href="@{/creationFiche/{table}(table=${taxiTable.taxi})}"><button>Créer Fiche</button></a>
+  <a th:href="@{/rechercheFicheReception/{table}(table=${taxiTable.taxi})}"><button>Chercher Fiche</button></a>
+  <a th:href="@{/debut/{table}(table=${taxiTable.taxi})}"><button>Retour</button></a>
+
 </body>
+
 </html>

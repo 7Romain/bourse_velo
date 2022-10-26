@@ -1,22 +1,112 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Ajouter article</title>
-  </head>
-  <body>
-    <h2 class="h2">Ajouter article</h2>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
 
-    <div>
-      <p
-        data-th-text="${'Vendeur : ' + personne.prenom +' '+ personne.nom +'   '+personne.telephone}"
-      >
-        Vendeur
-      </p>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ajouter article</title>
+</head>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  </body>
+<body>
+  <h2 class="h2">Ajouter article</h2>
+
+  <div>
+    <p data-th-text="${'Vendeur : ' + personne.prenom +' '+ personne.nom +'   '+personne.telephone}">
+      Vendeur
+    </p>
+  </div>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Catégorie</th>
+          <th>Type</th>
+          <th>Taille</th>
+          <th>Couleurs</th>
+          <th>Annotations</th>
+          <th>Réf</th>
+          <th>Prix Vendeur</th>
+          <th>Prix de Vente</th>
+          <th>Numéro de la table</th>
+          <th>Id Vendeur</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:if="${articles.empty}">
+          <td colspan="3">Aucun article encore entrée base de données</td>
+        </tr>
+        <tr th:each="article: ${articles}">
+          <td><span th:text="${article.categorie}">Catégorie</span></td>
+          <td><span th:text="${article.type}">Type</span></td>
+          <td><span th:text="${article.taille}">Taille</span></td>
+          <td><span th:text="${article.couleurs}">Couleurs</span></td>
+          <td><span th:text="${article.annotations}">annotations</span></td>
+          <td><span th:text="${article.reference}">Réf</span></td>
+          <td><span th:text="${article.prixVendeur}">Prix Vendeur</span></td>
+          <td><span th:text="${article.prixVente}">Prix de Vente</span></td>
+          <td><span th:text="${article.tableEnregistrement}">Numéro de la table d'enregistrement</span></td>
+          <td><span th:text="${article.idVendeur}">Id Vendeur</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <h2>Vélo</h2>
+    <form method="post" th:action="@{/saveArticle/{table}(table=${taxiTable.taxi})}" th:object="${article}">
+      <div class="form-group">
+        <label for="categorieInput"> Catégorie</label>
+        <select title="Catégorie" id="categorieInput" th:field="*{categorie}">
+          <option value="VELO" selected>Vélo</option>
+          <option value="VETEMENT">Vêtement</option>
+          <option value="ACCESSOIRE">Accessoire</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="typeInput">Type de Vélo</label>
+        <select title="typeVelo" id="typeInput" th:field="*{type}">
+          <option value="ROUTE" selected>Route</option>
+          <option value="VTT">VTT</option>
+          <option value="VILLE">Ville</option>
+          <option value="ELECTRIQUE">Électrique</option>
+          <option value="ENFANT">Enfant</option>
+          <option value="DIVERS">Diverst</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tailleInput">Taille</label>
+        <input type="text" th:field="*{taille}" class="form-control" id="tailleInput" />
+      </div>
+      <div class="form-group">
+        <label for="couleursInput">Couleurs</label>
+        <input type="text" th:field="*{couleurs}" class="form-control" id="couleursInput" />
+      </div>
+      <div class="form-group">
+        <label for="annotationsInput">Annotations</label>
+        <input type="text" th:field="*{annotations}" class="form-control" id="annotationsInput" />
+      </div>
+      <div class="form-group">
+        <label for="prixVendeurInput">Prix Vendeur</label>
+        <input type="number" th:field="*{prixVendeur}" class="form-control" id="prixVendeurInput" />
+      </div>
+      <div class="form-group">
+        <!-- <label for="personIdInput">Id Vendeur</label> -->
+        <input type="hidden" th:field="*{idVendeur}" class="form-control" id="personIdInput" />
+      </div>
+      <div class="form-group">
+        <!-- <label for="tableIdInput">Table d'enregistrement</label> -->
+        <input type="hidden" th:field="*{tableEnregistrement}" class="form-control" id="tableIdInput" />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form>
+    <a
+      th:href="@{/selectionnerPersonne/{id}/{table}(id=${personne.id}, table=${taxiTable.taxi})}"><button>Retour</button></a>
+  </div>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</body>
+
 </html>

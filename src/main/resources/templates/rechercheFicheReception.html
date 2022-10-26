@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Rechercher Fiche pour Reception</title>
-  </head>
-  <body>
-    <h2>Rechercher fiche pour Reception</h2>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Prénom</th>
-          <th>Nom</th>
-          <th>Téléphone</th>
-          <th>Commune</th>
-          <th>Date d'inscription</th>
-          <th>Adresse email</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:if="${personnes.empty}">
-          <td colspan="3">Aucun employée en base de données</td>
-        </tr>
-        <tr th:each="personne: ${personnes}">
-          <td><span th:text="${personne.prenom}">Prénom</span></td>
-          <td><span th:text="${personne.nom}">Nom</span></td>
-          <td><span th:text="${personne.telephone}">Téléphone</span></td>
-          <td><span th:text="${personne.commune}">Commune</span></td>
-          <td>
-            <span th:text="${{personne.dateInscription}}"
-              >Date d'inscription</span
-            >
-          </td>
-          <td><span th:text="${personne.email}">Email</span></td>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rechercher Fiche pour Reception</title>
+</head>
 
-          <td>
-            <a th:href="@{/updatePersonne/{id}(id=${personne.id})}"
-              ><button class="btn btn-info">Modifier</button></a
-            ><a th:href="@{/deletePersonne/{id}(id=${personne.id})}"
-              ><button class="btn btn-danger">Supprimer</button></a
-            >
-            <a th:href="@{/selectionnerPersonne/{id}(id=${personne.id})}"
-              ><button class="btn btn-danger">Selectionner</button></a
-            >
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <a href="/reception"><button>Retour</button></a>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  </body>
+<body>
+  <h2>Rechercher fiche pour Reception</h2>
+
+  <table aria-label="Tableau des articles mis en vente">
+    <thead>
+      <tr>
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Téléphone</th>
+        <th>Commune</th>
+        <th>Date d'inscription</th>
+        <th>Adresse email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:if="${personnes.empty}">
+        <td colspan="3">Aucun employée en base de données</td>
+      </tr>
+      <tr th:each="personne: ${personnes}">
+        <td><span th:text="${personne.prenom}">Prénom</span></td>
+        <td><span th:text="${personne.nom}">Nom</span></td>
+        <td><span th:text="${personne.telephone}">Téléphone</span></td>
+        <td><span th:text="${personne.commune}">Commune</span></td>
+        <td>
+          <span th:text="${{personne.dateInscription}}">Date d'inscription</span>
+        </td>
+        <td><span th:text="${personne.email}">Email</span></td>
+
+        <td>
+          <a th:href="@{/updatePersonne/{id}/{table}(id=${personne.id},table=${taxiTable.taxi})}"><button
+              class="btn btn-info">Modifier</button></a><a
+            th:href="@{/deletePersonne/{id}/{table}(id=${personne.id},table=${taxiTable.taxi})}"><button
+              class="btn btn-danger">Supprimer</button></a>
+          <a th:href="@{/selectionnerPersonne/{id}/{table}(id=${personne.id},table=${taxiTable.taxi})}"><button
+              class="btn btn-danger">Selectionner</button></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <a th:href="@{/reception/{table}(table=${taxiTable.taxi})}"><button>Retour</button></a>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</body>
+
 </html>

@@ -1,6 +1,7 @@
 package fr.oz.boursevelo.model;
 
 
+import fr.oz.boursevelo.service.ReferenceTable;
 import lombok.Data;
 
 
@@ -25,9 +26,13 @@ public class Article {
 
     private int prixVendeur;
 
-    private int prixVente = calculPrixVente(prixVendeur);
+    private int prixVente;
 
-    private int calculPrixVente(int prixVendeur){
+    private long idVendeur;
+
+    private int tableEnregistrement;
+
+    public int calculPrixVente(int prixVendeur){
         double taux = 0.05;
         return  (int)Math.ceil(( prixVendeur  *  taux ) + prixVendeur);
     }

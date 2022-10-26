@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Restitution Bourse aux Vélo CRSY</title>
 </head>
+
 <body>
-<h1>Restitution</h1>
-<a href="/rechercheFicheRestitution"><button>Chercher Fiche</button></a>
-<a href="/statistiques"><button>Statistiques</button></a>
-<a href="/"><button>Retour</button></a>
+  <h1>Restitution</h1>
+  <a href="/rechercheFicheRestitution"><button>Chercher Fiche</button></a>
+  <a href="/statistiques"><button>Statistiques</button></a>
+  <a th:href="@{/debut/{table}(table=${taxiTable.taxi})}"><button>Retour</button></a>
 </body>
+
 </html>
