@@ -18,6 +18,7 @@ public class Article {
 
     private String taille;
 
+
     private String couleurs;
 
     private String annotations;

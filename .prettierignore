@@ -1,0 +1,5 @@
+coverage
+dist
+docs
+hint-report
+node_modules

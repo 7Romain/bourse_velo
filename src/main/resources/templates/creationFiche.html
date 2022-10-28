@@ -2,52 +2,80 @@
 <html lang="fr" xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
+  <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}" />
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Creation de la fiche</title>
 </head>
 
-<body>
-  <h2 class="h2">Ajout d'une nouvelle personne</h2>
+<body class="bg-light">
+  <img class="logo" src="../images/crsy.png" alt="logo du club">
+  <div class="container-fluid bloc">
 
-  <div>
-    <form method="post" th:action="@{/savePersonne/{table}(table=${taxiTable.taxi})}" th:object="${personne}">
-      <div class="form-group">
-        <label for="prenomInput">Prénom</label>
-        <input type="text" th:field="*{prenom}" class="form-control" id="prenomInput" aria-describedby="prenomHelp"
-          placeholder="Saisir le prénom" />
-        <small id="prenomHelp" class="form-text text-muted">Merci d'écrire le prénom de l'employée.</small>
-      </div>
-      <div class="form-group">
-        <label for="nomInput">Nom</label>
-        <input type="text" th:field="*{nom}" class="form-control" id="nomInput" aria-describedby="nomHelp"
-          placeholder="Saisir le nom" />
-        <small id="nomHelp" class="form-text text-muted">Merci d'écrire le nom de l'employée.</small>
-      </div>
-      <div class="form-group">
-        <label for="telephone">Téléphone</label>
-        <input type="text" th:field="*{telephone}" class="form-control" id="telephoneInput"
-          aria-describedby="telephoneHelp" placeholder="Saisir le numéro de téléphone" />
-        <small id="telephoneHelp" class="form-text text-muted">Merci d'écrire le numéro de téléphone de la
-          personne.</small>
-      </div>
-      <div class="form-group">
-        <label for="communeInput">Commune</label>
-        <input type="text" th:field="*{commune}" class="form-control" id="communeInput"
-          placeholder="Saisir la commune" />
-      </div>
-      <div class="form-group">
-        <label for="emailInput">Adresse email</label>
-        <input type="text" th:field="*{email}" class="form-control" id="emailInput" placeholder="Saisir l'email" />
-      </div>
 
-      <button type="submit" class="btn btn-primary">Créer</button>
-    </form>
+    <h2 class="text-secondary d-block m-5 text-center col">Ajout d'une nouvelle personne</h2>
+
+    <div class="align-items-center col">
+      <form class="m-auto " method="post" th:action="@{/savePersonne/{table}(table=${taxiTable.taxi})}"
+        th:object="${personne}">
+        <div class=" align-items-center text-center justify-content-center m-auto ">
+
+          <div class="form-group row mb-2">
+            <div class="col-3 offset-3  col-md-2 offset-md-4 text-start "><label class="col-form-label  "
+                for="prenomInput">Prénom</label>
+            </div>
+            <div class="col-4">
+              <input type="text" th:field="*{prenom}" class="form-control" id="prenomInput"
+                aria-describedby="prenomHelp" placeholder="Saisir le prénom" required="true" />
+            </div>
+          </div>
+          <div class="form-group row mb-2">
+            <div class="col-3 offset-3 col-md-2 offset-md-4   text-start  "><label class="col-form-label"
+                for="nomInput">Nom</label></div>
+            <div class="col-4">
+              <input type="text" th:field="*{nom}" class="form-control" id="nomInput" aria-describedby="nomHelp"
+                placeholder="Saisir le nom" required="true" />
+            </div>
+          </div>
+          <div class="form-group row mb-2">
+            <div class="col-3 offset-3 col-md-2 offset-md-4  text-start  "><label class="col-form-label"
+                for="telephone">Téléphone</label>
+            </div>
+            <div class="col-4">
+              <input type="text" th:field="*{telephone}" class="form-control" id="telephoneInput"
+                aria-describedby="telephoneHelp" placeholder="Saisir le numéro de téléphone" required="true" />
+            </div>
+          </div>
+          <div class="form-group row mb-2">
+            <div class="col-3 offset-3 col-md-2 offset-md-4  text-start  "><label class="col-form-label"
+                for="communeInput">Commune</label>
+            </div>
+            <div class="col-4">
+              <input type="text" th:field="*{commune}" class="form-control" id="communeInput"
+                placeholder="Saisir la commune" required="true" />
+            </div>
+          </div>
+          <div class="form-group row mb-2">
+            <div class="col-3 offset-3 col-md-2 offset-md-4  text-start  "><label class="col-form-label"
+                for="emailInput">Adresse
+                email</label></div>
+            <div class="col-4">
+              <input type="email" th:field="*{email}" class="form-control" id="emailInput"
+                placeholder="Saisir l'email" />
+            </div>
+          </div>
+          <button type="submit"
+            class="btn d-block btn-lg btn-primary text-bold mt-4 mx-auto align-center btn-outline-secondary btnOK mt-2">Créer</button>
+        </div>
+
+      </form>
+    </div>
+    <a th:href="@{/reception/{table}(table=${taxiTable.taxi})}"><button
+        class="btn d-block btn-lg btn-warning text-bold mt-4 mx-auto align-center btn-outline-dark btnOK">Retour</button></a>
+
   </div>
-  <a th:href="@{/reception/{table}(table=${taxiTable.taxi})}"><button>Retour</button></a>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </body>
 
 </html>

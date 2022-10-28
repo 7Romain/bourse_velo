@@ -2,31 +2,46 @@
 <html lang="fr" xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}" />
+    <!-- <link rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}" /> -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Choix de la table</title>
+
 </head>
 
-<body>
-    <h2>Choix de la table</h2>
+<body class="bg-light">
+    <div class="container bloc">
+        <div class=" justify-content-center d-flex">
 
-    <div>
+            <img src="../images/crsy.png" alt="">
+        </div>
+        <h1 class="text-secondary d-block m-5 text-center">Choix de la table d'enregistrement</h1>
 
-        <form method="post" th:action="@{/choisirTable}" th:object="${taxiTable}">
-            <div class="form-group">
-                <label for="tableInput">Selectionner la table d'enregistrement</label>
-                <select name="table" title="Table" id="tableInput" th:field="*{taxi}">
-                    <option th:value="1">Table 1</option>
-                    <option th:value="2">Table 2</option>
-                    <option th:value="3">Table 3</option>
-                    <option th:value="4">Table 4</option>
-                </select>
-            </div>
+        <div class="row flex-column">
 
-
-            <button type="submit" class="btn btn-primary">Continuer</button>
-        </form>
+            <form method="post" th:action="@{/choisirTable}" th:object="${taxiTable}">
+                <div class=" m-auto">
+                    <div class="form-group d-block justify-content-center text-center align-middle input-group">
+                        <label for=" tableInput" class="col col-form-label">
+                            <h3>Selectionner votre table :   </h3>
+                        </label>
+                        <select name="table" class="col form-select-m" title="Table" id="tableInput" th:field="*{taxi}">
+                            <option class="optionListe text-center" th:value="0">Numéro de la table</option>
+                            <option class="optionListe text-center" th:value="1">Table 1</option>
+                            <option class="optionListe text-center" th:value="2">Table 2</option>
+                            <option class="optionListe text-center" th:value="3">Table 3</option>
+                            <option class="optionListe text-center" th:value="4">Table 4</option>
+                        </select>
+                    </div>
+                    <div class="input-group-append ">
+                        <button type="submit"
+                            class="btn d-block btn-lg btn-primary text-bold mt-4 mx-auto align-center btn-outline-secondary btnOK">Continuer</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 
 </body>

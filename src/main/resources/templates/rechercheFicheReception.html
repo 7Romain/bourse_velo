@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr" xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}" />
+
   <title>Rechercher Fiche pour Reception</title>
 </head>
 
@@ -47,7 +49,6 @@
     </tbody>
   </table>
   <a th:href="@{/reception/{table}(table=${taxiTable.taxi})}"><button>Retour</button></a>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </body>
 
 </html>

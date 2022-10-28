@@ -1,0 +1,35 @@
+@import "_variables_overrides.scss";
+@import "../bootstrap/scss/bootstrap.scss";
+.bloc {
+    margin-top: 5px;
+}
+
+.btnOK {
+    font-weight: bold;
+    font-size: large;
+}
+
+#tableInput {
+    font-size: large;
+    text-align-last: center;
+}
+
+.choixES {
+    justify-content: space-around;
+    text-align-last: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.num {
+    font-weight: bold;
+    color: rgb(39, 189, 46);
+    text-shadow: 1px 1px 0 black;
+    font-size: 40px;
+}
+
+.logo {
+    height: 125px;
+}

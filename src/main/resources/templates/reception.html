@@ -1,18 +1,30 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <meta charset="UTF-8">
   <title>Réception Bourse aux Vélo CRSY</title>
 </head>
 
-<body>
-  <h1>Réception</h1>
-  <a th:href="@{/creationFiche/{table}(table=${taxiTable.taxi})}"><button>Créer Fiche</button></a>
-  <a th:href="@{/rechercheFicheReception/{table}(table=${taxiTable.taxi})}"><button>Chercher Fiche</button></a>
-  <a th:href="@{/debut/{table}(table=${taxiTable.taxi})}"><button>Retour</button></a>
+<body class="bg-light">
+  <div class="bloc container">
+    <div class=" justify-content-center d-flex">
+      <img src="../images/crsy.png" alt="">
+    </div>
+    <h1 class="text-secondary d-block m-5 text-center">Réception</h1>
+    <div class="d-flex choixES">
+      <a th:href="@{/creationFiche/{table}(table=${taxiTable.taxi})}"><button
+          class="btn d-block btn-lg btn-primary text-bold mt-4 mx-auto align-center btn-outline-secondary btnOK">Créer
+          Fiche</button></a>
+      <a th:href="@{/rechercheFicheReception/{table}(table=${taxiTable.taxi})}"><button
+          class="btn d-block btn-lg btn-primary text-bold mt-4 mx-auto align-center btn-outline-secondary btnOK">Chercher
+          Fiche</button></a>
+    </div>
+    <a th:href="@{/debut/{table}(table=${taxiTable.taxi})}"><button
+        class="btn d-block btn-lg btn-warning text-bold mt-4 mx-auto align-center btn-outline-dark btnOK">Retour</button></a>
+  </div>
 
 </body>
 

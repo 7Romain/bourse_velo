@@ -1,0 +1,52 @@
+{
+  "name": "bourse_velo",
+  "version": "1.0.0",
+  "description": "Logiciel de gestion de la bourse au vélo",
+  "main": "index.js",
+  "scripts": {
+    "checkPrettier": "npx prettier --check *.html",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch-scssWatchMAP": "sass --verbose --watch  src/main/resources/static/scss/style.scss:src/main/resources/static/css/main.css --source-map"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/7Romain/bourse_velo.git"
+  },
+  "author": "Romain.7",
+  "license": "ISC",
+  "devDependencies": {
+    "@hint/configuration-web-recommended": "^8.2.13",
+    "@hint/hint-typescript-config": "^2.5.9",
+    "autoprefixer": "^10.4.7",
+    "hint": "^7.1.0",
+    "htmlhint": "^1.1.4",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "snyk": "^1.1012.0",
+    "sonarlint": "^1.1.0",
+    "source-map-support": "^0.5.21",
+    "stylelint": "^14.9.1",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-prettier-scss": "^0.0.1",
+    "stylelint-config-recommended": "^9.0.0",
+    "stylelint-config-recommended-scss": "^7.0.0",
+    "stylelint-scss": "^4.3.0",
+    "jest": "^28.1.3",
+    "jest-environment-jsdom": "^28.1.3",
+    "jest-html-reporters": "^3.0.10",
+    "jsdoc": "^3.6.11",
+    "jsdom": "^20.0.0",
+    "markdownlint": "^0.26.2",
+    "markdownlint-cli": "^0.32.0",
+    "postcss": "^8.4.14",
+    "postcss-cli": "^10.0.0",
+    "postcss-sorting": "^7.0.1"
+  },
+  "bugs": {
+    "url": "https://github.com/7Romain/bourse_velo/issues"
+  },
+  "homepage": "https://github.com/7Romain/bourse_velo#readme",
+  "dependencies": {
+    "bootstrap": "^5.2.2"
+  }
+}
