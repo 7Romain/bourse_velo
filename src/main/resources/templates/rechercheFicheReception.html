@@ -9,46 +9,54 @@
   <title>Rechercher Fiche pour Reception</title>
 </head>
 
-<body>
-  <h2>Rechercher fiche pour Reception</h2>
+<body class="bg-light">
+  <img class="logo" src="../images/crsy.png" alt="logo du club" />
+  <div class="container-fluid">
 
-  <table aria-label="Tableau des articles mis en vente">
-    <thead>
-      <tr>
-        <th>Prénom</th>
-        <th>Nom</th>
-        <th>Téléphone</th>
-        <th>Commune</th>
-        <th>Date d'inscription</th>
-        <th>Adresse email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr th:if="${personnes.empty}">
-        <td colspan="3">Aucun employée en base de données</td>
-      </tr>
-      <tr th:each="personne: ${personnes}">
-        <td><span th:text="${personne.prenom}">Prénom</span></td>
-        <td><span th:text="${personne.nom}">Nom</span></td>
-        <td><span th:text="${personne.telephone}">Téléphone</span></td>
-        <td><span th:text="${personne.commune}">Commune</span></td>
-        <td>
-          <span th:text="${{personne.dateInscription}}">Date d'inscription</span>
-        </td>
-        <td><span th:text="${personne.email}">Email</span></td>
-
-        <td>
-          <a th:href="@{/updatePersonne/{id}/{table}(id=${personne.id},table=${taxiTable.taxi})}"><button
-              class="btn btn-info">Modifier</button></a><a
-            th:href="@{/deletePersonne/{id}/{table}(id=${personne.id},table=${taxiTable.taxi})}"><button
-              class="btn btn-danger">Supprimer</button></a>
-          <a th:href="@{/selectionnerPersonne/{id}/{table}(id=${personne.id},table=${taxiTable.taxi})}"><button
-              class="btn btn-danger">Selectionner</button></a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <a th:href="@{/reception/{table}(table=${taxiTable.taxi})}"><button>Retour</button></a>
+    <h2 class="text-secondary d-block m-5 text-center col">Rechercher fiche pour Reception</h2>
+    <input type="search" placeholder="nom ou téléphone..." id="searchInput" name="zoneSearch" autocomplete="on"
+      spellcheck="false" autocorrect="off" class="d-block m-auto" />
+    <table class="table table-striped m-3 table-bordered" aria-label="Tableau des articles mis en vente">
+      <caption>Liste des vendeurs</caption>
+      <thead>
+        <tr>
+          <th>Prénom</th>
+          <th>Nom</th>
+          <th>Téléphone</th>
+          <th>Commune</th>
+          <th>Date d'inscription</th>
+          <th>Adresse email</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody class="table-striped table-hover">
+        <tr th:if="${personnes.empty}">
+          <td colspan="3">Aucun employée en base de données</td>
+        </tr>
+        <tr th:each="personne: ${personnes}">
+          <td><span th:text="${personne.prenom}">Prénom</span></td>
+          <td><span th:text="${personne.nom}">Nom</span></td>
+          <td><span th:text="${personne.telephone}">Téléphone</span></td>
+          <td><span th:text="${personne.commune}">Commune</span></td>
+          <td>
+            <span th:text="${{personne.dateInscription}}">Date d'inscription</span>
+          </td>
+          <td><span th:text="${personne.email}">Email</span></td>
+          <td>
+            <a th:href="@{/updatePersonne/{id}/{table}(id=${personne.id},table=${taxiTable.taxi})}"><button
+                class="btn btn-info">Modifier</button></a>
+            <a th:href="@{/selectionnerPersonne/{id}/{table}(id=${personne.id},table=${taxiTable.taxi})}"><button
+                class="btn  btn-primary text-bold  align-center btn-outline-secondary btnOK ">Selectionner</button></a>
+            <a class="pl-5 ml-5"
+              th:href="@{/deletePersonne/{id}/{table}(id=${personne.id},table=${taxiTable.taxi})}"><button
+                class="btn btn-danger ">Supprimer</button></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a th:href="@{/reception/{table}(table=${taxiTable.taxi})}"><button
+        class="btn btn-lg btn-warning text-bold d-block mt-4 mx-auto align-center btn-outline-dark btnOK">Retour</button></a>
+  </div>
 </body>
 
 </html>
