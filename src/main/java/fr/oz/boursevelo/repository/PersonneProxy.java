@@ -126,6 +126,30 @@ public class PersonneProxy {
 
 
 
+    /**
+     * Rechecher personne avec numéro de telephone ou nom
+     * @return An iterable of all personnes
+     */
+
+    public Iterable<Personne> chercherPersonne(String info) {
+        String baseApiUrl = props.getApiUrl();
+        String getPersonnesUrl = baseApiUrl + "/chercherPersonne/" + info;
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Iterable<Personne>> response = restTemplate.exchange(
+                getPersonnesUrl,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<Iterable<Personne>>() {}
+        );
+
+        log.debug("Get Personnes call " + response.getStatusCode().toString());
+
+        return response.getBody();
+    }
+
+
+
 
 
 

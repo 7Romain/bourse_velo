@@ -6,17 +6,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}" />
 
-  <title>Rechercher Fiche pour Reception</title>
+  <title>Rechercher Fiche</title>
 </head>
 
 <body class="bg-light">
-  <img class="logo" src="../images/crsy.png" alt="logo du club" />
+  <img class="logo" th:src="@{/../images/crsy.png}" src="/../images/crsy.png" alt="logo du club" title="logo du club" />
+
   <div class="container-fluid">
 
-    <h2 class="text-secondary d-block m-5 text-center col">Rechercher fiche pour Reception</h2>
-    <input type="search" placeholder="nom ou téléphone..." id="searchInput" name="zoneSearch" autocomplete="on"
-      spellcheck="false" autocorrect="off" class="d-block m-auto" />
-    <table class="table table-striped m-3 table-bordered" aria-label="Tableau des articles mis en vente">
+    <h2 class="text-secondary d-block m-5 text-center col">Rechercher la fiche d'un vendeur</h2>
+
+
+    <form class="m-auto " method="post" th:action="@{/chercherPersonne/{table}(table=${taxiTable.taxi})}"
+      id="filtrePersonne">
+
+
+      <div class="row">
+        <label class="d-flex mt-1 col-5 justify-content-end" for="searchInput">Filtrer :</label>
+        <input type="texte" placeholder="nom ou téléphone..." id="searchInput" th:name="zoneSearch" autocomplete="off"
+          spellcheck="false" autocorrect="off" class="col-2 loupe" required="true" size="25"
+          th:attr="value = ${filtre}" />
+      </div>
+
+
+
+
+      <div class="d-flex flex-row justify-content-center">
+        <button type="submit"
+          class="btn btn-lg m-2 btn-primary text-bold  btn-outline-secondary btnOK ">Rechercher</button>
+        <a th:href="@{/rechercheFicheReception/{table}(table=${taxiTable.taxi})}"><button type="button"
+            class="btn  btn-lg btn-secondary m-2  text-bold  btn-outline-primary btnOK" id="btnEffacer">Effacer
+            le filtrage </button></a>
+      </div>
+    </form>
+
+
+
+
+
+
+    <table class="table table-striped m-3 table-bordered tableau" aria-label="Tableau des articles mis en vente"
+      id="tableau">
       <caption>Liste des vendeurs</caption>
       <thead>
         <tr>
@@ -31,7 +61,7 @@
       </thead>
       <tbody class="table-striped table-hover">
         <tr th:if="${personnes.empty}">
-          <td colspan="3">Aucun employée en base de données</td>
+          <td colspan="3">Aucun vendeur en base de données avec cette recherche</td>
         </tr>
         <tr th:each="personne: ${personnes}">
           <td><span th:text="${personne.prenom}">Prénom</span></td>
@@ -43,10 +73,10 @@
           </td>
           <td><span th:text="${personne.email}">Email</span></td>
           <td>
-            <a th:href="@{/updatePersonne/{id}/{table}(id=${personne.id},table=${taxiTable.taxi})}"><button
-                class="btn btn-info">Modifier</button></a>
             <a th:href="@{/selectionnerPersonne/{id}/{table}(id=${personne.id},table=${taxiTable.taxi})}"><button
                 class="btn  btn-primary text-bold  align-center btn-outline-secondary btnOK ">Selectionner</button></a>
+            <a th:href="@{/updatePersonne/{id}/{table}(id=${personne.id},table=)}"><button
+                class="btn btn-info">Modifier</button></a>
             <a class="pl-5 ml-5"
               th:href="@{/deletePersonne/{id}/{table}(id=${personne.id},table=${taxiTable.taxi})}"><button
                 class="btn btn-danger ">Supprimer</button></a>
@@ -54,9 +84,23 @@
         </tr>
       </tbody>
     </table>
-    <a th:href="@{/reception/{table}(table=${taxiTable.taxi})}"><button
-        class="btn btn-lg btn-warning text-bold d-block mt-4 mx-auto align-center btn-outline-dark btnOK">Retour</button></a>
+    <button class="btn btn-lg btn-warning text-bold d-block mt-4 mx-auto align-center btn-outline-info btnOK"><a
+        th:href="@{/reception/{table}(table=${taxiTable.taxi})}" title="Bouton retour">Retour</a></button>
   </div>
+
+
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+
+    let numTable = [[${ taxiTable.taxi }]];
+    let filtre = [[${ taxiTable.taxi }]];
+
+
+
+    /*]]>*/
+  </script>
+  <script type="text/javascript" th:src="@{/js/rechercheFiche.js}"></script>
+  <script type="text/javascript" th:src="@{/js/jquery-3.6.1.min.js}"></script>
 </body>
 
 </html>

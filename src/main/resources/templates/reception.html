@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}">
+  <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Réception Bourse aux Vélo CRSY</title>
 </head>
@@ -11,7 +11,7 @@
 <body class="bg-light">
   <div class="bloc container">
     <div class=" justify-content-center d-flex">
-      <img src="../images/crsy.png" alt="">
+      <img src="/../images/crsy.png" alt="">
     </div>
     <h1 class="text-secondary d-block m-5 text-center">Réception</h1>
     <div class="d-flex choixES">
@@ -22,8 +22,8 @@
           class="btn d-block btn-lg btn-primary text-bold mt-4 mx-auto align-center btn-outline-secondary btnOK">Chercher
           Fiche</button></a>
     </div>
-    <a th:href="@{/debut/{table}(table=${taxiTable.taxi})}"><button
-        class="btn d-block btn-lg btn-warning text-bold mt-4 mx-auto align-center btn-outline-dark btnOK">Retour</button></a>
+    <button class="btn d-block btn-lg btn-warning text-bold mt-4 mx-auto align-center btn-outline-info btnOK"><a
+        th:href="@{/debut/{table}(table=${taxiTable.taxi})}">Retour</a></button>
   </div>
 
 </body>

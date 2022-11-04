@@ -10,10 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -42,13 +39,21 @@ public String restitution(@PathVariable("table") final int table, Model model){
 }
 
 @GetMapping("/rechercheFicheReception/{table}")
-public String rechercheFicheReception(@PathVariable("table") final int table, @NotNull Model model){
-    Iterable<Personne> listPersonne = personneService.getPersonnes();
-    model.addAttribute("personnes", listPersonne);
+public  ModelAndView rechercheFicheReception(@PathVariable("table") final int table, @NotNull Model model){
+
+
+    System.out.println(model.getAttribute("personnes"));
+
+    if(model.getAttribute("personnes")==null){
+        Iterable<Personne> listPersonne = personneService.getPersonnes();
+        model.addAttribute("personnes", listPersonne);
+    }
+
     TaxiTable taxiTable = new TaxiTable();
     taxiTable.setTaxi(table);
     model.addAttribute("taxiTable" , taxiTable );
-    return "rechercheFicheReception";
+
+    return new ModelAndView("rechercheFicheReception" );
 
 }
 
@@ -157,7 +162,7 @@ public String rechercheFicheReception(@PathVariable("table") final int table, @N
     @PostMapping("/choisirTable")
     public ModelAndView choisirTable(@ModelAttribute TaxiTable taxiTable) {
 
-      System.out.println(taxiTable.getTaxi());
+
       int tab = taxiTable.getTaxi();
 
         return new ModelAndView("redirect:/debut/" +tab ,"taxiTable" ,taxiTable );
@@ -175,6 +180,66 @@ public String rechercheFicheReception(@PathVariable("table") final int table, @N
 
     }
 
+    @PostMapping("/chercherPersonne/{table}")
+    public ModelAndView afficherTableauFiltre(
+            @PathVariable("table") final int table , Model model,
+            @RequestParam(value = "zoneSearch", required = true) String zoneSearch
+    ){
+    TaxiTable taxiTable = new TaxiTable();
+    taxiTable.setTaxi(table);
+    model.addAttribute("taxiTable", taxiTable);
+
+        Iterable<Personne> chercherPersonne = personneService.chercherPersonne(zoneSearch);
+        model.addAttribute("filtre", zoneSearch);
+        model.addAttribute("personnes", chercherPersonne);
+        System.out.println(model.getAttribute("personnes"));
+
+
+        return new ModelAndView("rechercheFicheReception", "model" , model) ;
+
+    }
+    @GetMapping("/chercherPersonne/{table}")
+    public ModelAndView afficherTableauFiltre2(
+            @PathVariable("table") final int table , Model model,
+            @RequestParam(value = "zoneSearch", required = true) String zoneSearch
+    ){
+    TaxiTable taxiTable = new TaxiTable();
+    taxiTable.setTaxi(table);
+    model.addAttribute("taxiTable", taxiTable);
+    String tab = String.valueOf(taxiTable.getTaxi());
+        Iterable<Personne> chercherPersonne = personneService.chercherPersonne(zoneSearch);
+        model.addAttribute("filtre", zoneSearch);
+        model.addAttribute("personnes", chercherPersonne);
+        return new ModelAndView("redirect:/rechercheFicheReception/" + tab);
+    }
+
+//    @PostMapping("/rechercheFicheReception/{filtre}/{table}")
+//    public String rechercheFicheReceptionFiltre(@PathVariable("filtre") final String filtre,@PathVariable("table") final int table, @NotNull Model model){
+//        Iterable<Personne> chercherPersonne = personneService.chercherPersonne(filtre);
+//
+//        model.addAttribute("personnes", chercherPersonne);
+//        TaxiTable taxiTable = new TaxiTable();
+//        taxiTable.setTaxi(table);
+//        model.addAttribute("taxiTable" , taxiTable );
+//        model.addAttribute("filtre" , filtre);
+//        return "rechercheFicheReception";
+//
+//    }
+
+    @GetMapping("/rechercherFiltre/{table}/{filtre}")
+    public ModelAndView rechercherFiltre (
+            @PathVariable("table") final int table, Model model, @PathVariable("filtre") String filtre
+    ){
+        TaxiTable taxiTable = new TaxiTable();
+        taxiTable.setTaxi(table);
+        model.addAttribute("taxiTable", taxiTable);
+        String tab = String.valueOf(taxiTable.getTaxi());
+        Iterable<Personne> chercherPersonne = personneService.chercherPersonne(filtre);
+        model.addAttribute("filtre", filtre);
+        model.addAttribute("personnes", chercherPersonne);
+        return new ModelAndView("redirect:/rechercheFicheReception/" + tab);
+
+    }
 
 
     }

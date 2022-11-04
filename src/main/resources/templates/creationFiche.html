@@ -10,7 +10,7 @@
 </head>
 
 <body class="bg-light">
-  <img class="logo" src="../images/crsy.png" alt="logo du club" />
+  <img class="logo" src="/../images/crsy.png" alt="logo du club" />
   <div class="container-fluid bloc">
 
 
@@ -72,8 +72,8 @@
 
       </form>
     </div>
-    <a th:href="@{/reception/{table}(table=${taxiTable.taxi})}"><button
-        class="btn d-block btn-lg btn-warning text-bold mt-4 mx-auto align-center btn-outline-dark btnOK">Retour</button></a>
+    <button class="btn d-block btn-lg btn-warning text-bold mt-4 mx-auto align-center btn-outline-info btnOK"><a
+        th:href="@{/reception/{table}(table=${taxiTable.taxi})}">Retour</a></button>
 
   </div>
   <script type="text/javascript" th:src="@{/js/numtel.js}"></script>

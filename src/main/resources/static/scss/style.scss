@@ -27,7 +27,7 @@ a {
     font-weight: bold;
     color: rgb(39, 189, 46);
     text-shadow: 1px 1px 0 black;
-    font-size: 40px;
+    font-size: 50px;
 }
 
 .logo {
@@ -42,5 +42,19 @@ a {
     border: inset 2px grey;
 }
 
-caption { display: none;
+caption {
+    display: none;
+}
+
+.loupe {
+    background: url("/../images/loupe2.png") no-repeat right;
+    background-color: white;
+    background-size: 20px;
+    // background-size: contain;
+    border-radius: 5px;
+    padding-right: 25px;
+}
+
+.taxi {
+    display: none;
 }

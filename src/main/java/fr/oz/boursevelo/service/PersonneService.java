@@ -21,6 +21,10 @@ public class PersonneService {
         return personneProxy.getPersonnes();
     }
 
+    public Iterable<Personne> chercherPersonne(String info){
+        return personneProxy.chercherPersonne(info);
+    }
+
     public void deletePersonne(final long id) {
         personneProxy.deletePersonne(id);
     }
